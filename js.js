@@ -9,6 +9,8 @@ const gallery = {
             oppendImageScreenClass: 'galleryWrapper__screen',
             oppendImageCloseBtnClass: 'galleryWrapper__close',
             oppendImageCloseBtnSrc: 'images/gallery/close.png', //Ссылка до картинки закрыть
+        oppendImageIfNotFounImage: 'galleryWrapper__notimage', //Класс для подгрузки картинки error
+        oppendImageIfNotFounImageSrc: 'images/gallery/error.jpg' //Путь до картинки error
     },
 
     init(userSettings = {}){
@@ -90,6 +92,8 @@ const gallery = {
         image.classList.add(this.settings.oppendImageClass);
         //Помещаем изображение в главный див.
         galleryWrapperElement.appendChild(image);
+        //Вызываем функцию замены картинки в случае её отсутствия
+        image.onerror = () => {image.src = this.settings.oppendImageIfNotFounImageSrc};
         //Добавляем главный элемент в боди.
         document.body.appendChild(galleryWrapperElement);
         //Возвращаем див с элементами.
